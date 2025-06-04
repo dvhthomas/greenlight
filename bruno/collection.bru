@@ -1,0 +1,28 @@
+docs {
+  # API Integration Tests
+  
+  ## One time setup
+  
+  Install bruno CLI
+  
+  ```sh
+  npm install -g @usebruno/cli
+  ```
+  
+  ## Run the tests
+  
+  Start the server, matching what [Bruno expects](bruno/environments/dev.bru) for hostname and port. Defaults are `http://localhost` and `4000` respectively.
+  
+  ```sh
+  go run ./cmd/api -port=4001 -env=development
+  ```
+  
+  Execute the tests from the `bruno` directory. If they all fail, check the environment values.
+  
+  ``` sh
+  cd bruno
+  bru run --env dev
+  cd ..
+  ```
+  
+}

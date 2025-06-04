@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"greenlight.bitsby.me/internal/data"
+	"github.com/dvhthomas/greenlight/internal/data"
 )
 
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {

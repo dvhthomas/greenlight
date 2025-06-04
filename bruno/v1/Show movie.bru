@@ -1,0 +1,15 @@
+meta {
+  name: Show movie
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}:{{port}}/v1/movies/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}

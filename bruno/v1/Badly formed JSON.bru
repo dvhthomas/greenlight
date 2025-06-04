@@ -1,0 +1,19 @@
+meta {
+  name: Badly formed JSON
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{host}}:{{port}}/v1/movies
+  body: text
+  auth: inherit
+}
+
+body:text {
+  {"title": "Moana", }
+}
+
+assert {
+  res.status: eq 400
+}

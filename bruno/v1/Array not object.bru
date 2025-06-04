@@ -1,0 +1,15 @@
+meta {
+  name: Array not object
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{host}}:{{port}}/v1/movies
+  body: json
+  auth: inherit
+}
+
+body:json {
+  ["foo", "bar"]
+}

@@ -12,7 +12,7 @@ Learning Go API development with [Let's Go Further](https://lets-go-further.alex
 
 Use Docker compatible tool to host this, e.g., [OrbStack](https://orbstack.dev/) on Mac (`brew install orbstack`).
 
-* Postgres - `docker-compose up -d`
+* Postgres - `docker compose up -d`
 * Postgres client - `brew install libpq` and add it to the path. `brew` will tell you how to do that for Zsh.
 
 Test the connection:

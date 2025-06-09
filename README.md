@@ -6,6 +6,7 @@ Learning Go API development with [Let's Go Further](https://lets-go-further.alex
 
 * Go 1.24.3 - `asdf install go 1.24.3`
 * Bruno - `npm install @usebruno/cli`
+* [migrate](https://github.com/golang-migrate/migrate) - `brew install golang-migrate` for database migrations.
 
 ### Postgres
 
@@ -38,10 +39,10 @@ Copy the `.env.example` file to `.env` and set the `DB_CONNECTION` variable.
 cp .env.example .env
 ```
 
-Run any DB setup:
+Run any one-time DB setup:
 
 ```shell
-psql -h localhost -p 5432 -d greenlight -U greenlight -f migrations/db-setup.sql
+psql -h localhost -p 5432 -d greenlight -U greenlight -f scripts/db-setup.sql
 ```
 
 Run the dev server:

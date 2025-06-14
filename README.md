@@ -8,7 +8,21 @@ Learning Go API development with [Let's Go Further](https://lets-go-further.alex
 * Bruno - `npm install @usebruno/cli`
 * [migrate](https://github.com/golang-migrate/migrate) - `brew install golang-migrate` for database migrations.
 
-### Postgres
+## Environment
+
+The server will read environment variables by default from the `.env` file.
+Copy the `.env.example` file to `.env` and set the `DB_CONNECTION` variable.
+
+```shell
+cp .env.example .env
+vim .env # edit the file
+source .env # load the variables into the terminal
+```
+
+If you want to have those variables also available in the terminal by default, [install and configure `direnv](https://bitsby.me/til/2021-08-31/#now-with-env-support).
+That way you can use `$DB_CONNECTION` in your terminal rather than typing `source .env` each time.
+
+## Postgres
 
 Use Docker compatible tool to host this, e.g., [OrbStack](https://orbstack.dev/) on Mac (`brew install orbstack`).
 
@@ -18,10 +32,8 @@ Use Docker compatible tool to host this, e.g., [OrbStack](https://orbstack.dev/)
 Test the connection:
 
 ```shell
-psql -h localhost -p 5432 -U greenlight -d greenlight
+psql $DB_CONNECTION
 ```
-
-And type the password (see [docker-compose.yml](docker-compose.yml)) when prompted.
 
 If you change the password in the `docker-compose.yml` completely tear down the DB and recreate it otherwise it'll still be in the persistent disk volume.
 
@@ -31,19 +43,21 @@ docker compose down --rmi all -v
 docker compose up -d
 ```
 
-## Development
-
-Copy the `.env.example` file to `.env` and set the `DB_CONNECTION` variable.
-
-```shell
-cp .env.example .env
-```
+### Prep the database
 
 Run any one-time DB setup:
 
 ```shell
-psql -h localhost -p 5432 -d greenlight -U greenlight -f scripts/db-setup.sql
+psql $DB_CONNECTION -f scripts/db-setup.sql
 ```
+
+Then run any database migrations:
+
+```shell
+migrate -path=./migrations -database=$DB_CONNECTION up
+```
+
+## Development
 
 Run the dev server:
 
